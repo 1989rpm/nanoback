@@ -20,6 +20,12 @@ import os
 from django.conf import settings
 from .pagination import ThirtyPerPagePagination, TwentyPerPagePagination
 
+def api_root_view(request):
+    """
+    A simple view for the API root.
+    """
+    return JsonResponse({"message": "Welcome to the NanoBack API.", "status": "ok"})
+
 class ContactFormThrottle(AnonRateThrottle):
     rate = os.getenv("FORM_THROTTLE", "1/5min")  # 1 request every 5 minutes
 
