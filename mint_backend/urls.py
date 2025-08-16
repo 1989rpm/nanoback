@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from dotenv import load_dotenv
 from django_otp.admin import OTPAdminSite
+from lab.views import api_root_view
 
 # Load env variables
 load_dotenv()
@@ -32,6 +33,7 @@ else:
 
 
 urlpatterns = [
+    path('', api_root_view, name='api-root'),
     path(settings.ADMIN_URL, admin.site.urls),
     path(settings.API_URL, include('lab.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
