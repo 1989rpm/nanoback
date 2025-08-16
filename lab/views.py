@@ -34,7 +34,7 @@ class ContactFormThrottle(AnonRateThrottle):
 def contact_form(request):
     name = request.data.get('name')
     email = request.data.get('email')
-    subject = request.data.get('subject')
+    subject = request.data.get('subject').replace('\n', ' ').replace('\r', ' ')
     message = request.data.get('message')
 
     full_message = f"From: {name} <{email}>\n\n{message}"
